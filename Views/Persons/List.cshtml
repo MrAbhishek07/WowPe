@@ -1,0 +1,54 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model List<WowPay.Models.Entities.Person>
+<h1 class="text-center mb-5"> All Persons</h1>
+
+<div class="row mb-5">
+    <div class="col">
+        <a class="btn btn-primary" asp-action="Add" asp-controller="Persons">New Person</a>
+    </div>
+    <div class="col">
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Adress</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var person in Model)
+        {
+            <tr>
+                <td>@person.Id</td>
+                <td>@person.Name</td>
+                <td>@person.Email</td>
+                <td>@person.Phone</td>
+                <td style="white-space: normal; word-wrap: break-word;">
+                    @person.Address
+                </td>
+                <td>
+                    <div class="d-inline-flex align-items-center gap-4">
+                        <a class="btn btn-primary btn-sm" asp-controller="Persons" asp-action="Edit" asp-route-id="@person.Id">Edit</a>
+                        <a class="btn btn-info btn-sm" asp-controller="Persons" asp-action="Details" asp-route-id="@person.Id">View Details</a>
+
+                        <form asp-action="Delete" asp-controller="Persons" method="post" onsubmit="return confirm('Are you sure you want to delete this person?');" style="display:inline;">
+                            <input type="hidden" name="Id" value="@person.Id" />
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>

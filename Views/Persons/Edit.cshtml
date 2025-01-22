@@ -1,0 +1,71 @@
+﻿@model WowPay.Models.Entities.Person;
+
+<div class="row">
+    <div class="col-md-8 mx-auto rounded border p-3">
+        <h1 class="text-center mb-5">Edit Person Information</h1>
+
+        @if (Model is null)
+        {
+            <p>No Person was found with this Id</p>
+        }
+        else
+        {
+            <form method="post" enctype="multipart/fprm-data">
+
+
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-lable">Id</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" asp-for="Id" readonly />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-lable">Name</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" asp-for="Name" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-lable">Email</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" asp-for="Email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-lable">Phone</label>
+                    <div class="col-sm-8">
+                        <input type="tel" class="form-control" asp-for="Phone" onkeypress="return event.charCode >= 48 && event.charCode <= 57" maxlength="10" />
+                        <span asp-validation-for="Phone" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-lable">Adress</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" asp-for="Address" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="offset-sm-4 col-sm-4 d-grid">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                    <div class="col-sm-4 d-grid">
+                        <a class="btn btn-outline-primary" asp-controller="Persons" asp-action="List" role="button">Cancel</a>
+                    </div>
+
+                </div>
+            </form>
+        }
+
+
+    </div>
+
+</div>
